@@ -7,15 +7,41 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Login = () => {
   const [role, setRole] = useState('candidate'); // 'candidate' or 'employer'
-  const [authMethod, setAuthMethod] = useState('email'); // 'email', 'otp'
+  const [authMethod, setAuthMethod] = useState('email'); // 'email', 'otp-request', 'otp-verify', 'forgot-password', 'reset-password'
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
+  const [phoneOtp, setPhoneOtp] = useState('');
+  const [resetOtp, setResetOtp] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   
-  const { login, loginWithOtp, loginWithGoogle } = useAuth();
+  const { login, sendPhoneOtp, verifyPhoneOtp, loginWithGoogle, forgotPassword, resetPassword } = useAuth();
   const navigate = useNavigate();
+
+  const handleForgotPassword = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await forgotPassword(email);
+      alert('OTP sent to registered email! Check console or mock URL.');
+      setAuthMethod('reset-password');
+    } catch (error) {
+      alert(error.response?.data?.message || 'Error triggering forgot password.');
+    }
+  };
+
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
+    try {
+      await resetPassword(email, resetOtp, password);
+      alert('Password reset successfully!');
+      setAuthMethod('email');
+      setPassword('');
+      setResetOtp('');
+    } catch (error) {
+      alert(error.response?.data?.message || 'Error resetting password.');
+    }
+  };
 
   const handleEmailLogin = async (e) => {
     e.preventDefault();
@@ -33,14 +59,25 @@ const Login = () => {
     }
   };
 
-  const handleOtpLogin = async (e) => {
+  const handleSendOtp = async (e) => {
     e.preventDefault();
     if (role === 'employer') return alert('Employers cannot use OTP.');
     try {
-      await loginWithOtp(phone);
+      await sendPhoneOtp(phone);
+      alert('OTP sent to phone! (Check console if mock)');
+      setAuthMethod('otp-verify');
+    } catch (error) {
+      alert(error.response?.data?.message || 'Error sending OTP to Mobile. Check backend.');
+    }
+  };
+
+  const handleVerifyOtp = async (e) => {
+    e.preventDefault();
+    try {
+      await verifyPhoneOtp(phone, phoneOtp);
       navigate('/');
     } catch (error) {
-      alert('Mock OTP Failed. Ensure Backend is running.');
+      alert(error.response?.data?.message || 'Invalid or Expired OTP.');
     }
   };
 
@@ -115,8 +152,13 @@ const Login = () => {
             <p className="text-sm text-slate-400">Select your portal to continue.</p>
           </div>
 
-          {/* Role Toggle Selector */}
           <div className="flex bg-[#0B0F19] p-1 rounded-2xl mb-8 border border-white/5">
+            <button className="flex-1 py-3 rounded-xl font-bold text-sm bg-[#1D2847] text-white shadow-md border border-white/10">Sign In</button>
+            <Link to="/signup" className="flex-1 py-3 text-center rounded-xl font-bold text-sm text-slate-400 hover:text-slate-200 transition-all">Sign Up</Link>
+          </div>
+
+          {/* Role Toggle Selector */}
+          <div className="flex bg-[rgba(11,15,25,0.5)] p-1 rounded-xl mb-6 border border-white/5">
             <button 
               type="button"
               onClick={() => { 
@@ -151,7 +193,13 @@ const Login = () => {
               exit={{ opacity: 0, x: -10 }}
               transition={{ duration: 0.2 }}
             >
-              <form onSubmit={authMethod === 'email' ? handleEmailLogin : handleOtpLogin} className="space-y-5">
+              <form onSubmit={
+                authMethod === 'email' ? handleEmailLogin : 
+                authMethod === 'otp-request' ? handleSendOtp : 
+                authMethod === 'otp-verify' ? handleVerifyOtp : 
+                authMethod === 'forgot-password' ? handleForgotPassword : 
+                handleResetPassword
+              } className="space-y-5">
                 
                 {authMethod === 'email' ? (
                   <>
@@ -170,7 +218,7 @@ const Login = () => {
                     <div>
                       <div className="flex justify-between items-center mb-2">
                         <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider">Password</label>
-                        <a href="#" className="text-xs font-semibold text-purple-400 hover:text-purple-300">Forgot?</a>
+                        <button type="button" onClick={() => setAuthMethod('forgot-password')} className="text-xs font-semibold text-purple-400 hover:text-purple-300">Forgot?</button>
                       </div>
                       <div className="relative">
                         <Lock className="absolute left-4 top-3.5 text-slate-400 w-5 h-5" />
@@ -183,7 +231,7 @@ const Login = () => {
                       </div>
                     </div>
                   </>
-                ) : (
+                ) : authMethod === 'otp-request' ? (
                   <div>
                     <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Phone Number</label>
                     <div className="relative">
@@ -196,10 +244,69 @@ const Login = () => {
                       />
                     </div>
                   </div>
+                ) : authMethod === 'otp-verify' ? (
+                  <div>
+                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Verification Code</label>
+                    <div className="relative">
+                      <Lock className="absolute left-4 top-3.5 text-slate-400 w-5 h-5" />
+                      <input 
+                        type="text" required 
+                        className="w-full pl-12 pr-4 py-3 bg-[#0B0F19]/50 border border-white/10 rounded-xl focus:bg-[#0B0F19] focus:ring-2 ring-purple-500 outline-none transition-all font-medium text-white placeholder-slate-500 tracking-[0.5em] font-mono text-center" 
+                        placeholder="••••••" 
+                        maxLength={6}
+                        value={phoneOtp} onChange={e => setPhoneOtp(e.target.value)} 
+                      />
+                    </div>
+                  </div>
+                ) : authMethod === 'forgot-password' ? (
+                  <div>
+                    <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Email Address to Reset</label>
+                    <div className="relative">
+                      <Mail className="absolute left-4 top-3.5 text-slate-400 w-5 h-5" />
+                      <input 
+                        type="email" required
+                        className="w-full pl-12 pr-4 py-3 bg-[#0B0F19]/50 border border-white/10 rounded-xl focus:bg-[#0B0F19] focus:ring-2 ring-purple-500 outline-none transition-all font-medium text-white placeholder-slate-500" 
+                        placeholder="candidate@email.com"
+                        value={email} onChange={e => setEmail(e.target.value)} 
+                      />
+                    </div>
+                    <button type="button" onClick={() => setAuthMethod('email')} className="text-xs text-slate-400 mt-3 font-semibold hover:text-slate-300">&larr; Back to Login</button>
+                  </div>
+                ) : (
+                  <>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Reset OTP</label>
+                      <div className="relative">
+                        <Lock className="absolute left-4 top-3.5 text-slate-400 w-5 h-5" />
+                        <input 
+                          type="text" required 
+                          className="w-full pl-12 pr-4 py-3 bg-[#0B0F19]/50 border border-white/10 rounded-xl focus:bg-[#0B0F19] focus:ring-2 ring-purple-500 outline-none transition-all font-medium text-white placeholder-slate-500" 
+                          placeholder="6 Digit OTP" 
+                          value={resetOtp} onChange={e => setResetOtp(e.target.value)} 
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">New Password</label>
+                      <div className="relative">
+                        <Lock className="absolute left-4 top-3.5 text-slate-400 w-5 h-5" />
+                        <input 
+                          type="password" required 
+                          className="w-full pl-12 pr-4 py-3 bg-[#0B0F19]/50 border border-white/10 rounded-xl focus:bg-[#0B0F19] focus:ring-2 ring-purple-500 outline-none transition-all font-medium text-white placeholder-slate-500" 
+                          placeholder="••••••••" 
+                          value={password} onChange={e => setPassword(e.target.value)} 
+                        />
+                      </div>
+                    </div>
+                  </>
                 )}
 
                 <button type="submit" className="w-full flex items-center justify-center gap-2 py-3.5 mt-4 font-bold text-white bg-purple-600 rounded-xl hover:bg-purple-500 transition-all shadow-[0_0_20px_rgba(168,85,247,0.3)]">
-                  Sign In <ArrowRight className="w-4 h-4" />
+                  {authMethod === 'forgot-password' ? 'Send OTP' : 
+                   authMethod === 'reset-password' ? 'Update Password' : 
+                   authMethod === 'otp-request' ? 'Send Verification Code' : 
+                   authMethod === 'otp-verify' ? 'Verify & Login' : 
+                   'Sign In'} <ArrowRight className="w-4 h-4" />
                 </button>
               </form>
             </motion.div>
@@ -217,7 +324,7 @@ const Login = () => {
                 <div className="grid grid-cols-2 gap-3">
                   <button 
                     type="button"
-                    onClick={() => setAuthMethod(authMethod === 'email' ? 'otp' : 'email')} 
+                    onClick={() => setAuthMethod(authMethod === 'email' ? 'otp-request' : 'email')} 
                     className="flex justify-center items-center py-3 border border-white/10 rounded-xl text-sm font-bold text-slate-300 hover:bg-white/5 transition"
                   >
                     {authMethod === 'email' ? 'Use Phone OTP' : 'Use Email'}

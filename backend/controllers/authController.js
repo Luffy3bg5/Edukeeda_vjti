@@ -1,6 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
 
 const generateToken = (id, role) => {
   return jwt.sign({ id, role }, process.env.JWT_SECRET, { expiresIn: '30d' });
@@ -62,12 +63,13 @@ exports.login = async (req, res) => {
 // Mock Auth Controllers
 exports.mockGoogleAuth = async (req, res) => {
   try {
-    const { email, name } = req.body; // In real flow, verify Google Token here
+    const { email, name } = req.body; 
+    if (!email) return res.status(400).json({ message: 'Email required' });
     let user = await User.findOne({ email });
     
     if (!user) {
       user = await User.create({
-        name, email, authProvider: 'google', role: 'candidate'
+        name: name || 'Google User', email, authProvider: 'google', role: 'candidate'
       });
     }
 
@@ -80,22 +82,147 @@ exports.mockGoogleAuth = async (req, res) => {
   }
 };
 
-exports.mockOtpAuth = async (req, res) => {
+exports.sendPhoneOtp = async (req, res) => {
   try {
     const { phone } = req.body;
-    // Mocking OTP validation logic. Assume valid.
+    if (!phone) return res.status(400).json({ message: 'Phone is required' });
+    
     let user = await User.findOne({ phone });
     if (!user) {
-      // Create barebones user
+      // Create barebones user for signup-via-OTP flow
       user = await User.create({
-        name: `User_${phone.slice(-4)}`, email: `${phone}@demo.com`, phone, authProvider: 'otp', role: 'candidate'
+        name: `User_${String(phone).slice(-4)}`, email: `${phone}@demo.com`, phone, authProvider: 'otp', role: 'candidate'
       });
     }
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    user.phoneOtp = otp;
+    user.phoneOtpExpires = Date.now() + 10 * 60 * 1000; // 10 mins
+    await user.save();
+
+    console.log(`[SMS MOCK] Sending OTP ${otp} to phone ${phone}`);
+    res.json({ message: 'OTP sent to mobile successfully', mockOtp: otp });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.verifyPhoneOtp = async (req, res) => {
+  try {
+    const { phone, otp } = req.body;
+    if (!phone || !otp) return res.status(400).json({ message: 'Phone and OTP are required' });
+
+    const user = await User.findOne({ 
+      phone, 
+      phoneOtp: otp,
+      phoneOtpExpires: { $gt: Date.now() }
+    });
+
+    if (!user) return res.status(400).json({ message: 'Invalid or expired OTP' });
+
+    user.phoneOtp = undefined;
+    user.phoneOtpExpires = undefined;
+    await user.save();
     
     res.json({
       _id: user.id, name: user.name, email: user.email, role: user.role,
       token: generateToken(user._id, user.role)
     });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.forgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    user.resetOtp = otp;
+    user.resetOtpExpires = Date.now() + 15 * 60 * 1000; // 15 mins
+    await user.save();
+
+    // Prioritize real SMTP
+    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+      const transporter = nodemailer.createTransport({
+          service: 'gmail', // or configured host
+          auth: {
+              user: process.env.EMAIL_USER,
+              pass: process.env.EMAIL_PASS
+          }
+      });
+      const message = {
+          from: `"EduKeeda Support" <${process.env.EMAIL_USER}>`,
+          to: user.email,
+          subject: 'Password Reset OTP',
+          text: `Your OTP for password reset is: ${otp}. It expires in 15 minutes.`
+      };
+      await transporter.sendMail(message);
+      return res.json({ message: 'OTP sent successfully to registered email' });
+    }
+
+    // Fallback Ethereal test account if real SMTP not found
+    nodemailer.createTestAccount((err, account) => {
+      if (err) {
+          console.error('Failed to create a testing account. ' + err.message);
+          return res.status(500).json({ message: 'Error configuring mailer' });
+      }
+      
+      const transporter = nodemailer.createTransport({
+          host: account.smtp.host,
+          port: account.smtp.port,
+          secure: account.smtp.secure,
+          auth: {
+              user: account.user,
+              pass: account.pass
+          }
+      });
+
+      const message = {
+          from: 'EduKeeda Support <support@edukeeda.demo>',
+          to: user.email,
+          subject: 'Password Reset OTP',
+          text: `Your OTP for password reset is: ${otp}. It expires in 15 minutes.`
+      };
+
+      transporter.sendMail(message, (err, info) => {
+          if (err) {
+              console.log('Error occurred. ' + err.message);
+              return res.status(500).json({ message: 'Error sending email' });
+          }
+          console.log('Message sent: %s', info.messageId);
+          console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+          // Provide OTP explicitly in response payload for easy testing without ethereal access
+          res.json({ message: 'OTP sent successfully via Mock Ethereal Email', previewUrl: nodemailer.getTestMessageUrl(info), mockOtp: otp });
+      });
+    });
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.resetPassword = async (req, res) => {
+  try {
+    const { email, otp, newPassword } = req.body;
+    const user = await User.findOne({ 
+      email, 
+      resetOtp: otp,
+      resetOtpExpires: { $gt: Date.now() }
+    });
+
+    if (!user) return res.status(400).json({ message: 'Invalid or expired OTP' });
+
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(newPassword, salt);
+    user.resetOtp = undefined;
+    user.resetOtpExpires = undefined;
+    
+    await user.save();
+    
+    res.json({ message: 'Password updated successfully' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

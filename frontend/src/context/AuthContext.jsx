@@ -22,8 +22,13 @@ export const AuthProvider = ({ children }) => {
     return data;
   };
 
-  const loginWithOtp = async (phone) => {
-    const { data } = await api.post('/auth/otp', { phone });
+  const sendPhoneOtp = async (phone) => {
+    const { data } = await api.post('/auth/send-phone-otp', { phone });
+    return data;
+  };
+
+  const verifyPhoneOtp = async (phone, otp) => {
+    const { data } = await api.post('/auth/verify-phone-otp', { phone, otp });
     setUser(data);
     localStorage.setItem('userInfo', JSON.stringify(data));
     return data;
@@ -33,6 +38,16 @@ export const AuthProvider = ({ children }) => {
     const { data } = await api.post('/auth/google', { email, name });
     setUser(data);
     localStorage.setItem('userInfo', JSON.stringify(data));
+    return data;
+  };
+
+  const forgotPassword = async (email) => {
+    const { data } = await api.post('/auth/forgot-password', { email });
+    return data;
+  };
+
+  const resetPassword = async (email, otp, newPassword) => {
+    const { data } = await api.post('/auth/reset-password', { email, otp, newPassword });
     return data;
   };
 
@@ -49,7 +64,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, loginWithOtp, loginWithGoogle, registerCandidate, logout, setUser }}>
+    <AuthContext.Provider value={{ user, loading, login, sendPhoneOtp, verifyPhoneOtp, loginWithGoogle, forgotPassword, resetPassword, registerCandidate, logout, setUser }}>
       {!loading && children}
     </AuthContext.Provider>
   );

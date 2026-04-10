@@ -39,6 +39,11 @@ const Signup = () => {
       <div className="max-w-2xl w-full bg-white rounded-2xl shadow-xl p-8">
         <h2 className="text-3xl font-extrabold text-gray-900 text-center mb-6">Create Candidate Account</h2>
         
+        {/* TAB BAR FOR SIGN IN & SIGN UP */}
+        <div className="flex bg-gray-100 p-1 rounded-2xl mb-8 border border-gray-200">
+          <Link to="/login" className="flex-1 py-3 text-center rounded-xl font-bold text-sm text-gray-500 hover:text-gray-700 transition-all">Sign In</Link>
+          <button className="flex-1 py-3 rounded-xl font-bold text-sm bg-white text-gray-900 shadow-sm border border-gray-200">Sign Up</button>
+        </div>
         {/* Progress Bar */}
         <div className="w-full bg-gray-200 rounded-full h-2.5 mb-8">
           <motion.div 
@@ -120,9 +125,8 @@ const Signup = () => {
           )}
         </form>
         
-        <p className="mt-6 text-center text-sm text-gray-600">
-          Already have an account? <Link to="/login" className="font-semibold text-primary">Login</Link>
-        </p>
+        {/* Empty space replacing old text */}
+        <div className="mt-6"></div>
       </div>
     </div>
   );

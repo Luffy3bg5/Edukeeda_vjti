@@ -14,7 +14,15 @@ const UserSchema = new mongoose.Schema({
   skills: [{ type: String }],
   interests: [{ type: String }],
   location: { type: String },
-  resumeUrl: { type: String }
+  resumeUrl: { type: String },
+  
+  // Password Reset
+  resetOtp: { type: String },
+  resetOtpExpires: { type: Date },
+  
+  // Phone OTP
+  phoneOtp: { type: String },
+  phoneOtpExpires: { type: Date }
 }, {
   timestamps: true
 });
