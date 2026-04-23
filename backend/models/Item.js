@@ -4,7 +4,7 @@ const ItemSchema = new mongoose.Schema({
   title: { type: String, required: true },
   type: { 
     type: String, 
-    enum: ['Scholarship', 'Loan', 'Competition', 'Hackathon', 'Event', 'Internship'],
+    enum: ['Scholarship', 'Loan', 'Competition', 'Hackathon', 'Cultural Event', 'College Event', 'Conference', 'Course', 'Internship'],
     required: true
   },
   description: { type: String, required: true },

@@ -11,6 +11,8 @@ const UserSchema = new mongoose.Schema({
   // Extra fields for Candidates
   educationDetails: { type: String },
   category: { type: String, enum: ['Student', 'Professional', 'Others'] },
+  experienceLevel: { type: String, enum: ['Beginner', 'Intermediate', 'Expert'] },
+  domain: { type: String },
   skills: [{ type: String }],
   interests: [{ type: String }],
   location: { type: String },

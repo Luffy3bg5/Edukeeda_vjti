@@ -12,7 +12,10 @@ const Sidebar = () => {
     { name: 'Competitions', path: '/competitions', icon: <Trophy className="w-5 h-5" /> },
     { name: 'Scholarships', path: '/scholarships', icon: <GraduationCap className="w-5 h-5" /> },
     { name: 'Hackathons', path: '/hackathons', icon: <MonitorPlay className="w-5 h-5" /> },
-    { name: 'Events', path: '/events', icon: <CalendarDays className="w-5 h-5" /> },
+    { name: 'Cultural Events', path: '/cultural-events', icon: <CalendarDays className="w-5 h-5" /> },
+    { name: 'College Events', path: '/college-events', icon: <CalendarDays className="w-5 h-5" /> },
+    { name: 'Conferences', path: '/conferences', icon: <CalendarDays className="w-5 h-5" /> },
+    { name: 'Courses', path: '/courses', icon: <BookOpen className="w-5 h-5" /> },
     { name: 'Education Loan', path: '/loans', icon: <BookOpen className="w-5 h-5" /> },
     { name: 'My Hosting', path: '/my-hosting', icon: <UserCircle className="w-5 h-5" /> },
   ];

@@ -7,10 +7,10 @@ const generateToken = (id, role) => {
   return jwt.sign({ id, role }, process.env.JWT_SECRET, { expiresIn: '30d' });
 };
 
-// @desc    Register new Candidate
+// @desc    Register new User
 exports.registerCandidate = async (req, res) => {
   try {
-    const { name, email, password, phone, educationDetails, category, skills, interests, location } = req.body;
+    const { name, email, password, phone, role, educationDetails, category, experienceLevel, domain, skills, interests, location } = req.body;
     
     // Check if user exists
     const userExists = await User.findOne({ email });
@@ -24,8 +24,8 @@ exports.registerCandidate = async (req, res) => {
 
     // Create user
     const user = await User.create({
-      name, email, password: hashedPassword, phone, role: 'candidate',
-      educationDetails, category, skills, interests, location
+      name, email, password: hashedPassword, phone, role: role || 'candidate',
+      educationDetails, category, experienceLevel, domain, skills, interests, location
     });
 
     if (user) {

@@ -11,7 +11,7 @@ const HostEvent = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    eventType: 'Event',
+    eventType: 'Hackathon',
     title: '', description: '', eligibility: '',
     externalLink: '', locationType: 'Online', domain: '',
     image: null
@@ -87,7 +87,10 @@ const HostEvent = () => {
               <div>
                 <label className="block text-sm font-bold text-slate-400 mb-2 uppercase tracking-wide">Category</label>
                 <select name="eventType" value={formData.eventType} onChange={handleChange} className="w-full p-4 border border-white/10 rounded-xl focus:ring-2 focus:ring-purple-500 outline-none bg-[#0B0F19] text-white font-medium appearance-none">
-                  <option>Event</option>
+                  <option>Cultural Event</option>
+                  <option>College Event</option>
+                  <option>Conference</option>
+                  <option>Course</option>
                   <option>Hackathon</option>
                   <option>Scholarship</option>
                   <option>Competition</option>

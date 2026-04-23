@@ -11,6 +11,7 @@ import HostEvent from './pages/HostEvent';
 import ItemsList from './pages/ItemsList';
 import MyHosting from './pages/MyHosting';
 import Search from './pages/Search';
+import { HelpCenter, Terms, Privacy, Contact } from './pages/SupportPages';
 import { useAuth, AuthProvider } from './context/AuthContext';
 
 const ProtectedRoute = ({ children, employerOnly = false }) => {
@@ -25,10 +26,10 @@ const Layout = ({ children }) => {
   const { user } = useAuth();
 
   return (
-    <div className="min-h-screen bg-[#0B0F19] text-slate-100 selection:bg-purple-500/30 font-sans">
+    <div className="min-h-screen bg-[#0B0F19] text-slate-100 selection:bg-purple-500/30 font-sans flex flex-col">
       <Navbar />
       {user && <Sidebar />}
-      <main className={`pt-16 ${user ? 'md:ml-64' : ''} min-h-screen transition-all duration-300 pb-10 relative z-0`}>
+      <main className={`pt-16 ${user ? 'md:ml-64' : ''} flex-1 transition-all duration-300 relative z-0`}>
         {children}
       </main>
     </div>
@@ -69,8 +70,17 @@ const AppRoutes = () => {
           <Route path="/internships" element={
             <ProtectedRoute><ItemsList type="Internship" title="Internships" subtitle="Gain real-world experience and accelerate your career." /></ProtectedRoute>
           } />
-          <Route path="/events" element={
-            <ProtectedRoute><ItemsList type="Event" title="Events & Workshops" subtitle="Attend global events and network." /></ProtectedRoute>
+          <Route path="/cultural-events" element={
+            <ProtectedRoute><ItemsList type="Cultural Event" title="Cultural Events" subtitle="Explore cultural fests and activities." /></ProtectedRoute>
+          } />
+          <Route path="/college-events" element={
+            <ProtectedRoute><ItemsList type="College Event" title="College Events" subtitle="Discover what's happening on campuses." /></ProtectedRoute>
+          } />
+          <Route path="/conferences" element={
+            <ProtectedRoute><ItemsList type="Conference" title="Conferences" subtitle="Attend global conferences and network." /></ProtectedRoute>
+          } />
+          <Route path="/courses" element={
+            <ProtectedRoute><ItemsList type="Course" title="Courses" subtitle="Upskill with professional courses." /></ProtectedRoute>
           } />
           <Route path="/competitions" element={
             <ProtectedRoute><ItemsList type="Competition" title="Competitions" subtitle="Showcase your skills." /></ProtectedRoute>
@@ -78,6 +88,12 @@ const AppRoutes = () => {
           <Route path="/loans" element={
             <ProtectedRoute><ItemsList type="Loan" title="Education Loans" subtitle="Get funding for your higher education." /></ProtectedRoute>
           } />
+
+          {/* Support Routes */}
+          <Route path="/help-center" element={<ProtectedRoute><HelpCenter /></ProtectedRoute>} />
+          <Route path="/terms" element={<ProtectedRoute><Terms /></ProtectedRoute>} />
+          <Route path="/privacy" element={<ProtectedRoute><Privacy /></ProtectedRoute>} />
+          <Route path="/contact" element={<ProtectedRoute><Contact /></ProtectedRoute>} />
 
         </Routes>
       </Layout>
