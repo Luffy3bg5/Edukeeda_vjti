@@ -83,7 +83,7 @@ const AdminManageItems = () => {
                       <p className="text-xs text-gray-500 truncate max-w-xs">{item.description}</p>
                     </td>
                     <td className="p-4">
-                      <span className="px-3 py-1 bg-indigo-50 text-primary rounded-full text-xs font-semibold uppercase">{item.type}</span>
+                      <span className="px-3 py-1 bg-rose-50 text-primary rounded-full text-xs font-semibold uppercase">{item.type}</span>
                     </td>
                     <td className="p-4">
                       {item.domain ? <span className="text-sm text-gray-700">{item.domain}</span> : <span className="text-sm text-gray-400">N/A</span>}

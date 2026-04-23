@@ -50,10 +50,10 @@ const Search = () => {
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
               placeholder="Search for hackathons, internships, events..." 
-              className="w-full pl-12 pr-4 py-4 bg-slate-900 border border-slate-700 rounded-2xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all font-medium"
+              className="w-full pl-12 pr-4 py-4 bg-slate-900 border border-slate-700 rounded-2xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all font-medium"
             />
           </div>
-          <button type="submit" className="px-8 py-4 bg-purple-600 text-white font-bold rounded-2xl hover:bg-purple-500 transition-all shadow-[0_5px_20px_rgb(147,51,234,0.3)] whitespace-nowrap">
+          <button type="submit" className="px-8 py-4 bg-violet-600 text-white font-bold rounded-2xl hover:bg-violet-500 transition-all shadow-[0_5px_20px_rgb(147,51,234,0.3)] whitespace-nowrap">
             Search
           </button>
         </form>
@@ -61,7 +61,7 @@ const Search = () => {
 
       {loading ? (
         <div className="flex flex-col items-center justify-center py-20">
-          <div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+          <div className="w-12 h-12 border-4 border-violet-500 border-t-transparent rounded-full animate-spin mb-4"></div>
           <div className="text-slate-400 font-medium">Loading opportunities...</div>
         </div>
       ) : results.length > 0 ? (

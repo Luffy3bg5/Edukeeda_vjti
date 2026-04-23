@@ -9,7 +9,7 @@ const Footer = () => {
         {/* Brand */}
         <div className="md:col-span-1">
           <h2 className="text-2xl font-black text-white mb-4">
-            Edu<span className="text-purple-500">Keeda</span>
+            Edu<span className="text-violet-500">Keeda</span>
           </h2>
           <p className="text-sm leading-relaxed mb-6">
             The ultimate hub for candidates to discover global hackathons, internships, scholarships, and career-accelerating opportunities.
@@ -20,10 +20,10 @@ const Footer = () => {
         <div>
           <h3 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Opportunities</h3>
           <ul className="space-y-3 text-sm">
-            <li><NavLink to="/hackathons" className="hover:text-purple-400 transition">Hackathons</NavLink></li>
-            <li><NavLink to="/internships" className="hover:text-purple-400 transition">Internships</NavLink></li>
-            <li><NavLink to="/scholarships" className="hover:text-purple-400 transition">Scholarships</NavLink></li>
-            <li><NavLink to="/competitions" className="hover:text-purple-400 transition">Competitions</NavLink></li>
+            <li><NavLink to="/hackathons" className="hover:text-violet-400 transition">Hackathons</NavLink></li>
+            <li><NavLink to="/internships" className="hover:text-violet-400 transition">Internships</NavLink></li>
+            <li><NavLink to="/scholarships" className="hover:text-violet-400 transition">Scholarships</NavLink></li>
+            <li><NavLink to="/competitions" className="hover:text-violet-400 transition">Competitions</NavLink></li>
           </ul>
         </div>
 
@@ -31,10 +31,10 @@ const Footer = () => {
         <div>
           <h3 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Support</h3>
           <ul className="space-y-3 text-sm">
-            <li><NavLink to="/help-center" className="hover:text-purple-400 transition">Help Center</NavLink></li>
-            <li><NavLink to="/terms" className="hover:text-purple-400 transition">Terms of Service</NavLink></li>
-            <li><NavLink to="/privacy" className="hover:text-purple-400 transition">Privacy Policy</NavLink></li>
-            <li><NavLink to="/contact" className="hover:text-purple-400 transition">Contact Us</NavLink></li>
+            <li><NavLink to="/help-center" className="hover:text-violet-400 transition">Help Center</NavLink></li>
+            <li><NavLink to="/terms" className="hover:text-violet-400 transition">Terms of Service</NavLink></li>
+            <li><NavLink to="/privacy" className="hover:text-violet-400 transition">Privacy Policy</NavLink></li>
+            <li><NavLink to="/contact" className="hover:text-violet-400 transition">Contact Us</NavLink></li>
           </ul>
         </div>
 
@@ -43,12 +43,12 @@ const Footer = () => {
            <h3 className="text-white font-bold mb-4 uppercase tracking-wider text-sm">Follow Us</h3>
            <p className="text-sm mb-4">Stay connected via our social channels for live updates.</p>
            <div className="flex flex-wrap gap-4 mt-6">
-             <a href="https://twitter.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-purple-600 hover:text-white transition cursor-pointer font-black text-sm shadow-md">X</a>
-             <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-purple-600 hover:text-white transition cursor-pointer font-black text-sm shadow-md">in</a>
-             <a href="https://instagram.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-purple-600 hover:text-white transition cursor-pointer font-black text-sm shadow-md">ig</a>
-             <a href="https://github.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-purple-600 hover:text-white transition cursor-pointer font-black text-sm shadow-md">gh</a>
-             <a href="https://discord.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-purple-600 hover:text-white transition cursor-pointer font-black text-sm shadow-md">dc</a>
-             <a href="https://youtube.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-purple-600 hover:text-white transition cursor-pointer font-black text-sm shadow-md">yt</a>
+             <a href="https://twitter.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-violet-600 hover:text-white transition cursor-pointer font-black text-sm shadow-md">X</a>
+             <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-violet-600 hover:text-white transition cursor-pointer font-black text-sm shadow-md">in</a>
+             <a href="https://instagram.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-violet-600 hover:text-white transition cursor-pointer font-black text-sm shadow-md">ig</a>
+             <a href="https://github.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-violet-600 hover:text-white transition cursor-pointer font-black text-sm shadow-md">gh</a>
+             <a href="https://discord.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-violet-600 hover:text-white transition cursor-pointer font-black text-sm shadow-md">dc</a>
+             <a href="https://youtube.com" target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-violet-600 hover:text-white transition cursor-pointer font-black text-sm shadow-md">yt</a>
            </div>
         </div>
 

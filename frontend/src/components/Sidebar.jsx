@@ -28,7 +28,7 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
   const links = user?.role === 'employer' ? adminLinks : candidateLinks;
 
   return (
-    <aside className={`fixed left-0 top-16 bottom-0 ${isExpanded ? 'w-64' : 'w-20'} bg-[#0B0F19] border-r border-white/5 overflow-y-auto scrollbar-hide hidden md:block transition-all duration-300 z-40`}>
+    <aside className={`fixed left-0 top-16 bottom-0 ${isExpanded ? 'w-64' : 'w-20'} bg-[#090514] border-r border-white/5 overflow-y-auto scrollbar-hide hidden md:block transition-all duration-300 z-40`}>
       <div className={`p-4 ${!isExpanded ? 'flex flex-col items-center' : ''}`}>
         
         {/* Toggle Button */}
@@ -58,7 +58,7 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
                   !isExpanded ? 'justify-center px-0' : 'px-3'
                 } ${
                   isActive 
-                    ? 'bg-purple-600/20 text-purple-400 border border-purple-500/30 shadow-[0_0_15px_rgba(168,85,247,0.15)]' 
+                    ? 'bg-violet-600/20 text-violet-400 border border-violet-500/30 shadow-[0_0_15px_rgba(139,92,246,0.15)]' 
                     : 'text-slate-400 hover:bg-white/5 hover:text-slate-200 border border-transparent'
                 }`
               }
@@ -74,7 +74,7 @@ const Sidebar = ({ isExpanded, setIsExpanded }) => {
             <NavLink 
               to="/host-event" 
               title={!isExpanded ? "Host Event" : ""}
-              className={`flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-xl font-bold hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] transition-all ${isExpanded ? 'w-full' : 'w-10 h-10 p-0 text-xl'}`}
+              className={`flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-violet-600 to-rose-600 text-white rounded-xl font-bold hover:shadow-[0_0_20px_rgba(139,92,246,0.4)] transition-all ${isExpanded ? 'w-full' : 'w-10 h-10 p-0 text-xl'}`}
             >
               {isExpanded ? '+ Host an Event' : '+'}
             </NavLink>

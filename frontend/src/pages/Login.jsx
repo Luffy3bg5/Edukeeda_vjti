@@ -99,7 +99,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex flex-col md:flex-row bg-[#0B0F19] text-white">
+    <div className="min-h-[calc(100vh-4rem)] flex flex-col md:flex-row bg-[#090514] text-white">
       
       {/* Left Column: Image Background & Global Search */}
       <div className="md:w-1/2 p-8 md:p-16 flex flex-col justify-center relative overflow-hidden">
@@ -108,12 +108,12 @@ const Login = () => {
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-luminosity"
           style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=2070")' }}
         ></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-[#0B0F19]/80 to-transparent z-0"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#090514] via-[#090514]/80 to-transparent z-0"></div>
 
         <div className="relative z-10 space-y-8 max-w-lg mx-auto w-full">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             <h1 className="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4 drop-shadow-lg">
-              Unlock Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Future.</span>
+              Unlock Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-rose-400">Future.</span>
             </h1>
             <p className="text-lg text-slate-300">
               Access premium hackathons, seamless internships, and exclusive scholarships globally. Start searching before you even log in!
@@ -124,7 +124,7 @@ const Login = () => {
           <motion.form 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
             onSubmit={handleQuickSearch}
-            className="flex items-center bg-white/10 backdrop-blur-md p-2 rounded-2xl border border-white/10 focus-within:ring-2 ring-purple-500 transition-all shadow-[0_0_40px_-10px_rgba(168,85,247,0.4)]"
+            className="flex items-center bg-white/10 backdrop-blur-md p-2 rounded-2xl border border-white/10 focus-within:ring-2 ring-violet-500 transition-all shadow-[0_0_40px_-10px_rgba(139,92,246,0.4)]"
           >
             <SearchIcon className="w-6 h-6 text-slate-300 ml-3" />
             <input 
@@ -134,7 +134,7 @@ const Login = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="flex-1 w-full p-3 font-medium text-white placeholder-slate-400 outline-none bg-transparent"
             />
-            <button type="submit" className="bg-purple-600 hover:bg-purple-500 text-white p-3 px-6 rounded-xl font-bold transition shadow-lg whitespace-nowrap">
+            <button type="submit" className="bg-violet-600 hover:bg-violet-500 text-white p-3 px-6 rounded-xl font-bold transition shadow-lg whitespace-nowrap">
               Search
             </button>
           </motion.form>
@@ -145,14 +145,14 @@ const Login = () => {
       <div className="md:w-1/2 flex items-center justify-center p-6 md:p-12 relative z-10">
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
-          className="w-full max-w-md bg-[#131B2F] rounded-3xl shadow-2xl border border-white/10 p-8"
+          className="w-full max-w-md bg-[#181024] rounded-3xl shadow-2xl border border-white/10 p-8"
         >
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-white mb-2">Welcome Back</h2>
             <p className="text-sm text-slate-400">Select your portal to continue.</p>
           </div>
 
-          <div className="flex bg-[#0B0F19] p-1 rounded-2xl mb-8 border border-white/5">
+          <div className="flex bg-[#090514] p-1 rounded-2xl mb-8 border border-white/5">
             <button className="flex-1 py-3 rounded-xl font-bold text-sm bg-[#1D2847] text-white shadow-md border border-white/10">Sign In</button>
             <Link to="/signup" className="flex-1 py-3 text-center rounded-xl font-bold text-sm text-slate-400 hover:text-slate-200 transition-all">Sign Up</Link>
           </div>
@@ -209,7 +209,7 @@ const Login = () => {
                         <Mail className="absolute left-4 top-3.5 text-slate-400 w-5 h-5" />
                         <input 
                           type="email" required
-                          className="w-full pl-12 pr-4 py-3 bg-[#0B0F19]/50 border border-white/10 rounded-xl focus:bg-[#0B0F19] focus:ring-2 ring-purple-500 outline-none transition-all font-medium text-white placeholder-slate-500" 
+                          className="w-full pl-12 pr-4 py-3 bg-[#090514]/50 border border-white/10 rounded-xl focus:bg-[#090514] focus:ring-2 ring-violet-500 outline-none transition-all font-medium text-white placeholder-slate-500" 
                           placeholder={role === 'employer' ? "employer@email.com" : "candidate@email.com"}
                           value={email} onChange={e => setEmail(e.target.value)} 
                         />
@@ -218,13 +218,13 @@ const Login = () => {
                     <div>
                       <div className="flex justify-between items-center mb-2">
                         <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider">Password</label>
-                        <button type="button" onClick={() => setAuthMethod('forgot-password')} className="text-xs font-semibold text-purple-400 hover:text-purple-300">Forgot?</button>
+                        <button type="button" onClick={() => setAuthMethod('forgot-password')} className="text-xs font-semibold text-violet-400 hover:text-violet-300">Forgot?</button>
                       </div>
                       <div className="relative">
                         <Lock className="absolute left-4 top-3.5 text-slate-400 w-5 h-5" />
                         <input 
                           type="password" required 
-                          className="w-full pl-12 pr-4 py-3 bg-[#0B0F19]/50 border border-white/10 rounded-xl focus:bg-[#0B0F19] focus:ring-2 ring-purple-500 outline-none transition-all font-medium text-white placeholder-slate-500" 
+                          className="w-full pl-12 pr-4 py-3 bg-[#090514]/50 border border-white/10 rounded-xl focus:bg-[#090514] focus:ring-2 ring-violet-500 outline-none transition-all font-medium text-white placeholder-slate-500" 
                           placeholder="••••••••" 
                           value={password} onChange={e => setPassword(e.target.value)} 
                         />
@@ -238,7 +238,7 @@ const Login = () => {
                       <Phone className="absolute left-4 top-3.5 text-slate-400 w-5 h-5" />
                       <input 
                         type="text" required 
-                        className="w-full pl-12 pr-4 py-3 bg-[#0B0F19]/50 border border-white/10 rounded-xl focus:bg-[#0B0F19] focus:ring-2 ring-purple-500 outline-none transition-all font-medium text-white placeholder-slate-500" 
+                        className="w-full pl-12 pr-4 py-3 bg-[#090514]/50 border border-white/10 rounded-xl focus:bg-[#090514] focus:ring-2 ring-violet-500 outline-none transition-all font-medium text-white placeholder-slate-500" 
                         placeholder="+91 9999999999" 
                         value={phone} onChange={e => setPhone(e.target.value)} 
                       />
@@ -251,7 +251,7 @@ const Login = () => {
                       <Lock className="absolute left-4 top-3.5 text-slate-400 w-5 h-5" />
                       <input 
                         type="text" required 
-                        className="w-full pl-12 pr-4 py-3 bg-[#0B0F19]/50 border border-white/10 rounded-xl focus:bg-[#0B0F19] focus:ring-2 ring-purple-500 outline-none transition-all font-medium text-white placeholder-slate-500 tracking-[0.5em] font-mono text-center" 
+                        className="w-full pl-12 pr-4 py-3 bg-[#090514]/50 border border-white/10 rounded-xl focus:bg-[#090514] focus:ring-2 ring-violet-500 outline-none transition-all font-medium text-white placeholder-slate-500 tracking-[0.5em] font-mono text-center" 
                         placeholder="••••••" 
                         maxLength={6}
                         value={phoneOtp} onChange={e => setPhoneOtp(e.target.value)} 
@@ -265,7 +265,7 @@ const Login = () => {
                       <Mail className="absolute left-4 top-3.5 text-slate-400 w-5 h-5" />
                       <input 
                         type="email" required
-                        className="w-full pl-12 pr-4 py-3 bg-[#0B0F19]/50 border border-white/10 rounded-xl focus:bg-[#0B0F19] focus:ring-2 ring-purple-500 outline-none transition-all font-medium text-white placeholder-slate-500" 
+                        className="w-full pl-12 pr-4 py-3 bg-[#090514]/50 border border-white/10 rounded-xl focus:bg-[#090514] focus:ring-2 ring-violet-500 outline-none transition-all font-medium text-white placeholder-slate-500" 
                         placeholder="candidate@email.com"
                         value={email} onChange={e => setEmail(e.target.value)} 
                       />
@@ -280,7 +280,7 @@ const Login = () => {
                         <Lock className="absolute left-4 top-3.5 text-slate-400 w-5 h-5" />
                         <input 
                           type="text" required 
-                          className="w-full pl-12 pr-4 py-3 bg-[#0B0F19]/50 border border-white/10 rounded-xl focus:bg-[#0B0F19] focus:ring-2 ring-purple-500 outline-none transition-all font-medium text-white placeholder-slate-500" 
+                          className="w-full pl-12 pr-4 py-3 bg-[#090514]/50 border border-white/10 rounded-xl focus:bg-[#090514] focus:ring-2 ring-violet-500 outline-none transition-all font-medium text-white placeholder-slate-500" 
                           placeholder="6 Digit OTP" 
                           value={resetOtp} onChange={e => setResetOtp(e.target.value)} 
                         />
@@ -292,7 +292,7 @@ const Login = () => {
                         <Lock className="absolute left-4 top-3.5 text-slate-400 w-5 h-5" />
                         <input 
                           type="password" required 
-                          className="w-full pl-12 pr-4 py-3 bg-[#0B0F19]/50 border border-white/10 rounded-xl focus:bg-[#0B0F19] focus:ring-2 ring-purple-500 outline-none transition-all font-medium text-white placeholder-slate-500" 
+                          className="w-full pl-12 pr-4 py-3 bg-[#090514]/50 border border-white/10 rounded-xl focus:bg-[#090514] focus:ring-2 ring-violet-500 outline-none transition-all font-medium text-white placeholder-slate-500" 
                           placeholder="••••••••" 
                           value={password} onChange={e => setPassword(e.target.value)} 
                         />
@@ -301,7 +301,7 @@ const Login = () => {
                   </>
                 )}
 
-                <button type="submit" className="w-full flex items-center justify-center gap-2 py-3.5 mt-4 font-bold text-white bg-purple-600 rounded-xl hover:bg-purple-500 transition-all shadow-[0_0_20px_rgba(168,85,247,0.3)]">
+                <button type="submit" className="w-full flex items-center justify-center gap-2 py-3.5 mt-4 font-bold text-white bg-violet-600 rounded-xl hover:bg-violet-500 transition-all shadow-[0_0_20px_rgba(139,92,246,0.3)]">
                   {authMethod === 'forgot-password' ? 'Send OTP' : 
                    authMethod === 'reset-password' ? 'Update Password' : 
                    authMethod === 'otp-request' ? 'Send Verification Code' : 
@@ -347,7 +347,7 @@ const Login = () => {
         {role === 'candidate' && (
           <p className="absolute bottom-4 text-center text-sm font-medium text-slate-400">
             Don't have an account?{' '}
-            <Link to="/signup" className="text-purple-400 hover:text-purple-300 font-bold ml-1 transition-colors">
+            <Link to="/signup" className="text-violet-400 hover:text-violet-300 font-bold ml-1 transition-colors">
               Sign up today!
             </Link>
           </p>

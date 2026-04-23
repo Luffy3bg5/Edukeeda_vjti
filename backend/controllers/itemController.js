@@ -31,13 +31,13 @@ exports.getItemById = async (req, res) => {
 // @desc    Create new item (Admin)
 exports.createItem = async (req, res) => {
   try {
-    const { title, type, description, eligibility, domain, locationType, location, externalLink, imageUrl } = req.body;
+    const { title, type, description, startDate, endDate, email, gender, audience, eligibility, domain, locationType, location, externalLink, dynamicFields, imageUrl } = req.body;
     
     // Support file upload via Cloudinary array if passed
     const imgUrl = req.file ? req.file.path : imageUrl;
 
     const item = await Item.create({
-      title, type, description, eligibility, domain, locationType, location, externalLink,
+      title, type, description, startDate, endDate, email, gender, audience, eligibility, domain, locationType, location, externalLink, dynamicFields,
       imageUrl: imgUrl,
       postedBy: req.user._id,
       status: 'approved'

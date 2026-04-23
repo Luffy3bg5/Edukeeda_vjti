@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#0B0F19] text-slate-100 selection:bg-purple-500/30 font-sans flex flex-col">
+    <div className="min-h-screen bg-[#090514] text-slate-100 selection:bg-violet-500/30 font-sans flex flex-col">
       <Navbar />
       {user && <Sidebar isExpanded={isSidebarExpanded} setIsExpanded={setIsSidebarExpanded} />}
       <main className={`pt-16 ${user ? (isSidebarExpanded ? 'md:ml-64' : 'md:ml-20') : ''} flex-1 transition-all duration-300 relative z-0`}>

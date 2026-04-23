@@ -106,46 +106,50 @@ const CandidateHome = () => {
     <>
       <div className="p-4 md:p-8 max-w-[90rem] mx-auto space-y-16">
       
-      {/* VIBRANT HERO SECTION */}
-      <section className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-indigo-900 via-purple-900 to-[#0B0F19] shadow-2xl border border-white/10 mt-4">
+      {/* VIBRANT HERO SECTION - MAXREACH COMPACT */}
+      <section className="relative overflow-hidden rounded-[2rem] bg-[#090514] border border-white/5 shadow-2xl mt-4">
         <div className="absolute inset-0 z-0">
-           <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-purple-600/30 rounded-full blur-[120px] mix-blend-screen"></div>
-           <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-pink-500/20 rounded-full blur-[100px] mix-blend-screen"></div>
+           {/* Subtle Neon Glows matching MaxReach */}
+           <div className="absolute top-[-30%] left-[-10%] w-[60%] h-[60%] bg-violet-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+           <div className="absolute bottom-[-20%] right-[10%] w-[40%] h-[40%] bg-rose-500/10 rounded-full blur-[80px] pointer-events-none"></div>
+           {/* Grid line overlay to mimic MaxReach wavy/tech background */}
+           <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_80%)] pointer-events-none"></div>
         </div>
 
-        <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between p-10 md:p-16 gap-10">
-          <div className="lg:w-[60%] space-y-8">
+        <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between p-8 md:p-12 gap-8">
+          <div className="lg:w-[60%] space-y-6">
             <motion.h1 
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-7xl font-black text-white leading-[1.1] tracking-tight"
+              initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] tracking-tight"
             >
               Compete, Learn &<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-blue-300 to-purple-400 drop-shadow-sm">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-500 via-rose-400 to-rose-400 drop-shadow-sm">
                 Get Hired
               </span>
             </motion.h1>
             <motion.p 
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-              className="text-xl text-indigo-100/90 font-medium leading-relaxed max-w-lg"
+              initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+              className="text-lg text-slate-300 font-medium leading-relaxed max-w-lg"
             >
               The premier ecosystem to showcase your skills. Discover global hackathons, coding challenges, internships, and scholarships.
             </motion.p>
             <motion.div 
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-              className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+              className="flex flex-col sm:flex-row gap-4 pt-2"
             >
-              <NavLink to="/search" className="px-8 py-4 bg-purple-600 text-white font-bold rounded-2xl hover:bg-purple-500 hover:scale-105 transition-all shadow-[0_10px_30px_rgb(147,51,234,0.3)]">
+              <NavLink to="/search" className="px-6 py-3.5 bg-violet-600 text-white font-bold rounded-xl hover:bg-violet-500 hover:scale-105 transition-all shadow-[0_5px_20px_rgb(139,92,246,0.4)]">
                 Explore All Opportunities
               </NavLink>
             </motion.div>
           </div>
 
-          <div className="lg:w-[40%] flex justify-center pb-8 lg:pb-0">
+          <div className="lg:w-[40%] flex justify-center pb-4 lg:pb-0 relative">
+             <div className="absolute inset-0 bg-gradient-to-tr from-violet-500/20 to-transparent rounded-2xl blur-xl"></div>
              <motion.img 
-               initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }}
-               src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800" 
-               alt="Students collaborating" 
-               className="w-full max-w-md rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 object-cover aspect-video lg:aspect-square"
+               initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.3 }}
+               src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800" 
+               alt="Abstract Tech Liquid" 
+               className="w-full max-w-sm rounded-2xl shadow-2xl border border-white/10 object-cover aspect-[4/3] relative z-10"
              />
           </div>
         </div>
@@ -191,7 +195,7 @@ const CandidateHome = () => {
       <section>
         <div className="flex items-center justify-between mb-6 border-b border-slate-800 pb-2">
           <h2 className="text-2xl md:text-3xl font-black text-white px-2">Featured Opportunities</h2>
-          <NavLink to="/search" className="text-purple-400 font-bold hover:text-purple-300">View All &rarr;</NavLink>
+          <NavLink to="/search" className="text-violet-400 font-bold hover:text-violet-300">View All &rarr;</NavLink>
         </div>
         
         <div className="overflow-hidden pb-8 pt-2 relative">
@@ -217,7 +221,7 @@ const CandidateHome = () => {
 
                {/* Card Content */}
               <div className="p-6 pt-2 flex flex-col flex-1">
-                <h3 className="text-xl font-bold text-white line-clamp-2 leading-tight mb-3 group-hover:text-purple-400 transition-colors">{opp.title}</h3>
+                <h3 className="text-xl font-bold text-white line-clamp-2 leading-tight mb-3 group-hover:text-violet-400 transition-colors">{opp.title}</h3>
                 
                 <div className="flex items-center gap-2 mb-6">
                   {opp.tags.map((tag, j) => (
@@ -249,13 +253,13 @@ const CandidateHome = () => {
 
       {/* PLATFORM STATISTICS GRID */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-         <div className="bg-gradient-to-br from-indigo-900/50 to-slate-900 border border-indigo-500/20 p-8 rounded-[2rem] text-center shadow-lg">
+         <div className="bg-gradient-to-br from-rose-900/50 to-slate-900 border border-rose-500/20 p-8 rounded-[2rem] text-center shadow-lg">
            <h2 className="text-4xl lg:text-5xl font-black text-white mb-2">5M+</h2>
-           <p className="text-indigo-200 font-medium">Active Candidates</p>
+           <p className="text-rose-200 font-medium">Active Candidates</p>
          </div>
-         <div className="bg-gradient-to-br from-purple-900/50 to-slate-900 border border-purple-500/20 p-8 rounded-[2rem] text-center shadow-lg">
+         <div className="bg-gradient-to-br from-violet-900/50 to-slate-900 border border-violet-500/20 p-8 rounded-[2rem] text-center shadow-lg">
            <h2 className="text-4xl lg:text-5xl font-black text-white mb-2">130K+</h2>
-           <p className="text-purple-200 font-medium">Opportunities Listed</p>
+           <p className="text-violet-200 font-medium">Opportunities Listed</p>
          </div>
          <div className="bg-gradient-to-br from-rose-900/50 to-slate-900 border border-rose-500/20 p-8 rounded-[2rem] text-center shadow-lg">
            <h2 className="text-4xl lg:text-5xl font-black text-white mb-2">1,200+</h2>
@@ -265,7 +269,7 @@ const CandidateHome = () => {
 
       {/* HOST BANNER */}
       <section className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-3xl p-8 md:p-12 shadow-xl border border-slate-700 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
-         <div className="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-purple-600/20 to-transparent z-0"></div>
+         <div className="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-violet-600/20 to-transparent z-0"></div>
          <div className="md:w-2/3 relative z-10">
             <h2 className="text-3xl font-black text-white mb-3">Want to Host an Event?</h2>
             <p className="text-slate-300 font-medium text-lg max-w-xl">Create a branded microsite to host hackathons, quizzes, and hiring challenges to recruit top talent instantly.</p>

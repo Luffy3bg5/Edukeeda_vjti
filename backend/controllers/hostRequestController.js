@@ -61,10 +61,17 @@ exports.updateRequestStatus = async (req, res) => {
         title: request.details.title,
         type: request.eventType,
         description: request.details.description,
+        startDate: request.details.startDate,
+        endDate: request.details.endDate,
+        email: request.details.email,
+        gender: request.details.gender,
+        audience: request.details.audience,
         eligibility: request.details.eligibility,
         externalLink: request.details.externalLink,
         domain: request.details.domain,
         locationType: request.details.locationType,
+        location: request.details.location,
+        dynamicFields: request.details.dynamicFields,
         imageUrl: request.details.imageUrl,
         postedBy: req.user._id // The admin who approved it
       });

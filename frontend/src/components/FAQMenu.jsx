@@ -60,11 +60,11 @@ const FAQMenu = ({ isOpen, onClose }) => {
         initial={{ opacity: 0, scale: 0.95, y: 10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 10 }}
-        className="w-full max-w-3xl bg-[#0B0F19] rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col max-h-[85vh]"
+        className="w-full max-w-3xl bg-[#090514] rounded-3xl border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col max-h-[85vh]"
       >
-        <div className="px-8 py-6 border-b border-white/10 bg-[#131B2F] flex justify-between items-center sticky top-0 z-10">
+        <div className="px-8 py-6 border-b border-white/10 bg-[#181024] flex justify-between items-center sticky top-0 z-10">
           <div className="flex items-center gap-3">
-             <div className="p-2 bg-purple-500/20 text-purple-400 rounded-xl">
+             <div className="p-2 bg-violet-500/20 text-violet-400 rounded-xl">
                <HelpCircle className="w-6 h-6" />
              </div>
              <h2 className="text-2xl font-black text-white">Frequently Asked Questions</h2>
@@ -84,14 +84,14 @@ const FAQMenu = ({ isOpen, onClose }) => {
                return (
                  <div 
                    key={index} 
-                   className={`border border-white/5 rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? 'bg-slate-800/50 border-purple-500/30 shadow-[0_0_15px_rgba(147,51,234,0.1)]' : 'bg-[#131B2F] hover:border-white/10'}`}
+                   className={`border border-white/5 rounded-2xl overflow-hidden transition-all duration-300 ${isOpen ? 'bg-slate-800/50 border-violet-500/30 shadow-[0_0_15px_rgba(147,51,234,0.1)]' : 'bg-[#181024] hover:border-white/10'}`}
                  >
                    <button 
                      onClick={() => toggleOpen(index)}
                      className="w-full px-6 py-5 text-left flex justify-between items-center gap-4"
                    >
                      <p className="text-white font-bold text-lg leading-tight">{item.q}</p>
-                     <div className={`p-1.5 rounded-full bg-slate-800 transition-colors ${isOpen ? 'text-purple-400' : 'text-slate-400'}`}>
+                     <div className={`p-1.5 rounded-full bg-slate-800 transition-colors ${isOpen ? 'text-violet-400' : 'text-slate-400'}`}>
                         {isOpen ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
                      </div>
                    </button>
@@ -117,8 +117,8 @@ const FAQMenu = ({ isOpen, onClose }) => {
           </div>
         </div>
         
-        <div className="border-t border-white/10 p-6 bg-[#131B2F]/80 text-center">
-            <p className="text-slate-400 text-sm">Still have questions? Feel free to checkout our <span className="text-purple-400 font-bold hover:underline cursor-pointer">Help Center</span>.</p>
+        <div className="border-t border-white/10 p-6 bg-[#181024]/80 text-center">
+            <p className="text-slate-400 text-sm">Still have questions? Feel free to checkout our <span className="text-violet-400 font-bold hover:underline cursor-pointer">Help Center</span>.</p>
         </div>
       </motion.div>
     </div>

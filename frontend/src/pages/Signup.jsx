@@ -35,11 +35,11 @@ const Signup = () => {
     }
   };
 
-  const inputStyles = "mt-1 w-full p-2 bg-slate-900 border border-slate-700 rounded-md text-slate-100 placeholder-slate-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-colors";
+  const inputStyles = "mt-1 w-full p-2 bg-slate-900 border border-slate-700 rounded-md text-slate-100 placeholder-slate-500 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500 transition-colors";
   const labelStyles = "block text-sm font-medium text-slate-300";
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0B0F19] py-12 px-4 selection:bg-purple-500/30">
+    <div className="min-h-screen flex items-center justify-center bg-[#090514] py-12 px-4 selection:bg-violet-500/30">
       <div className="max-w-2xl w-full bg-slate-800/50 backdrop-blur-md rounded-2xl shadow-2xl border border-slate-700 p-8">
         <h2 className="text-3xl font-extrabold text-white text-center mb-6">Create Account</h2>
         
@@ -51,7 +51,7 @@ const Signup = () => {
         {/* Progress Bar */}
         <div className="w-full bg-slate-700 rounded-full h-2.5 mb-8">
           <motion.div 
-            className="bg-purple-500 h-2.5 rounded-full" 
+            className="bg-violet-500 h-2.5 rounded-full" 
             initial={{ width: 0 }}
             animate={{ width: `${(step / 3) * 100}%` }}
             transition={{ duration: 0.3 }}
@@ -78,7 +78,7 @@ const Signup = () => {
                 <label className={labelStyles}>Password</label>
                 <input type="password" name="password" required value={formData.password} onChange={handleChange} className={inputStyles} />
               </div>
-              <button type="submit" className="w-full bg-purple-600 text-white font-medium p-3 rounded-md mt-6 shadow-sm hover:bg-purple-500 transition">Next Step</button>
+              <button type="submit" className="w-full bg-violet-600 text-white font-medium p-3 rounded-md mt-6 shadow-sm hover:bg-violet-500 transition">Next Step</button>
             </motion.div>
           )}
 
@@ -133,7 +133,7 @@ const Signup = () => {
               
               <div className="flex gap-4 mt-6">
                 <button type="button" onClick={handlePrev} className="w-1/2 bg-slate-700 text-slate-300 font-medium p-3 rounded-md hover:bg-slate-600 transition">Back</button>
-                <button type="submit" className="w-1/2 bg-purple-600 text-white font-medium p-3 rounded-md shadow-sm hover:bg-purple-500 transition">Next Step</button>
+                <button type="submit" className="w-1/2 bg-violet-600 text-white font-medium p-3 rounded-md shadow-sm hover:bg-violet-500 transition">Next Step</button>
               </div>
             </motion.div>
           )}
@@ -152,7 +152,7 @@ const Signup = () => {
               
               <div className="flex gap-4 mt-6">
                 <button type="button" onClick={handlePrev} className="w-1/2 bg-slate-700 text-slate-300 font-medium p-3 rounded-md hover:bg-slate-600 transition">Back</button>
-                <button type="submit" className="w-1/2 bg-emerald-600 text-white font-medium p-3 rounded-md shadow-sm hover:bg-emerald-500 transition">Complete Registration</button>
+                <button type="submit" className="w-1/2 bg-violet-600 text-white font-medium p-3 rounded-md shadow-sm hover:bg-violet-500 transition">Complete Registration</button>
               </div>
             </motion.div>
           )}

@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     setUser(data);
     localStorage.setItem('userInfo', JSON.stringify(data));
     return data;
-  };
+  }; 
 
   const sendPhoneOtp = async (phone) => {
     const { data } = await api.post('/auth/send-phone-otp', { phone });

@@ -52,7 +52,7 @@ const ItemsList = ({ type, title, subtitle }) => {
     <div className="p-6 md:p-10 max-w-7xl mx-auto space-y-8">
       
       {/* VIBRANT DYNAMIC BANNER */}
-      <div className="relative bg-[#0B0F19] border border-white/10 rounded-[2.5rem] p-8 md:p-14 shadow-2xl overflow-hidden min-h-[320px] flex items-center group">
+      <div className="relative bg-[#090514] border border-white/10 rounded-[2.5rem] p-8 md:p-14 shadow-2xl overflow-hidden min-h-[320px] flex items-center group">
         <div className="absolute inset-0 z-0">
            <img 
               src={getBannerImage(type)} 
@@ -60,23 +60,23 @@ const ItemsList = ({ type, title, subtitle }) => {
               className="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000 mix-blend-overlay grayscale-[0.2]"
            />
            {/* Dark Gradient Overlay to isolate text */}
-           <div className="absolute inset-0 bg-gradient-to-r from-[#0B0F19] via-[#0B0F19]/80 to-transparent"></div>
+           <div className="absolute inset-0 bg-gradient-to-r from-[#090514] via-[#090514]/80 to-transparent"></div>
            
            {/* Crazy Pulsing Abstract Lighting */}
-           <div className="absolute top-[-30%] right-[-10%] w-[60%] h-[160%] bg-gradient-to-br from-purple-600/30 to-indigo-500/20 mix-blend-screen filter blur-[120px] group-hover:bg-purple-500/40 transition-colors duration-1000"></div>
+           <div className="absolute top-[-30%] right-[-10%] w-[60%] h-[160%] bg-gradient-to-br from-violet-600/30 to-rose-500/20 mix-blend-screen filter blur-[120px] group-hover:bg-violet-500/40 transition-colors duration-1000"></div>
         </div>
         <div className="relative z-10 max-w-2xl hover:scale-[1.02] transition-transform">
-          <h1 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-purple-200 mb-6 drop-shadow-xl tracking-tight leading-tight">{title}</h1>
-          <p className="text-xl md:text-2xl text-indigo-100 font-medium drop-shadow-md">{subtitle}</p>
+          <h1 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-violet-200 mb-6 drop-shadow-xl tracking-tight leading-tight">{title}</h1>
+          <p className="text-xl md:text-2xl text-rose-100 font-medium drop-shadow-md">{subtitle}</p>
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row justify-between items-center bg-[#131B2F] border border-white/5 p-4 rounded-2xl gap-4 shadow-lg">
+      <div className="flex flex-col md:flex-row justify-between items-center bg-[#181024] border border-white/5 p-4 rounded-2xl gap-4 shadow-lg">
         <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 hide-scrollbar">
           {['All', 'Student', 'Professional'].map(cat => (
             <button 
               key={cat} onClick={() => setCategoryFilter(cat)}
-              className={`px-6 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${categoryFilter === cat ? 'bg-purple-600 text-white shadow-[0_0_15px_rgba(168,85,247,0.4)]' : 'bg-[#0B0F19] text-slate-400 hover:bg-white/5 border border-white/5'}`}
+              className={`px-6 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all ${categoryFilter === cat ? 'bg-violet-600 text-white shadow-[0_0_15px_rgba(139,92,246,0.4)]' : 'bg-[#090514] text-slate-400 hover:bg-white/5 border border-white/5'}`}
             >
               {cat}
             </button>
@@ -87,7 +87,7 @@ const ItemsList = ({ type, title, subtitle }) => {
           <select 
             value={domainFilter} 
             onChange={(e) => setDomainFilter(e.target.value)}
-            className="w-full md:w-40 p-3 rounded-xl bg-[#0B0F19] border border-white/10 text-slate-300 font-medium focus:ring-2 focus:ring-purple-500 outline-none appearance-none"
+            className="w-full md:w-40 p-3 rounded-xl bg-[#090514] border border-white/10 text-slate-300 font-medium focus:ring-2 focus:ring-violet-500 outline-none appearance-none"
           >
             <option value="All">All Domains</option>
             <option value="Tech">Tech</option>
@@ -97,7 +97,7 @@ const ItemsList = ({ type, title, subtitle }) => {
           <select 
             value={locationFilter} 
             onChange={(e) => setLocationFilter(e.target.value)}
-            className="w-full md:w-40 p-3 rounded-xl bg-[#0B0F19] border border-white/10 text-slate-300 font-medium focus:ring-2 focus:ring-purple-500 outline-none appearance-none"
+            className="w-full md:w-40 p-3 rounded-xl bg-[#090514] border border-white/10 text-slate-300 font-medium focus:ring-2 focus:ring-violet-500 outline-none appearance-none"
           >
             <option value="All">All Locations</option>
             <option value="Online">Online</option>
@@ -109,7 +109,7 @@ const ItemsList = ({ type, title, subtitle }) => {
 
       {loading ? (
         <div className="flex justify-center items-center h-64">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-violet-500"></div>
         </div>
       ) : filteredItems.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -118,7 +118,7 @@ const ItemsList = ({ type, title, subtitle }) => {
           ))}
         </div>
       ) : (
-        <div className="text-center py-24 bg-[#131B2F] border border-white/5 border-dashed rounded-3xl">
+        <div className="text-center py-24 bg-[#181024] border border-white/5 border-dashed rounded-3xl">
           <h3 className="text-2xl font-bold text-white mb-2">No {title.toLowerCase()} found</h3>
           <p className="text-slate-400">Try adjusting your filters or search criteria.</p>
         </div>

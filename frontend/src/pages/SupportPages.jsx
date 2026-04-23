@@ -16,9 +16,9 @@ export const HelpCenter = () => (
     <p>Welcome to the EduKeeda Help Center. We're here to assist you with any issues you may encounter on our platform.</p>
     <h2 className="text-xl font-bold text-white mt-8 mb-2">Frequently Asked Questions</h2>
     <ul className="list-disc list-inside space-y-3 ml-4 bg-slate-900/50 p-6 rounded-xl border border-slate-700">
-      <li><strong className="text-purple-400">How do I apply for a hackathon?</strong><br/> Navigate to the Hackathons section and click "Apply" on any active event.</li>
-      <li><strong className="text-purple-400">Is my data secure?</strong><br/> Yes, we use industry-standard encryption for all user data.</li>
-      <li><strong className="text-purple-400">Are education loans guaranteed?</strong><br/> Loan approval depends on the specific financial partner's criteria.</li>
+      <li><strong className="text-violet-400">How do I apply for a hackathon?</strong><br/> Navigate to the Hackathons section and click "Apply" on any active event.</li>
+      <li><strong className="text-violet-400">Is my data secure?</strong><br/> Yes, we use industry-standard encryption for all user data.</li>
+      <li><strong className="text-violet-400">Are education loans guaranteed?</strong><br/> Loan approval depends on the specific financial partner's criteria.</li>
     </ul>
   </PageContainer>
 );
@@ -62,13 +62,13 @@ export const Contact = () => (
     <div className="bg-slate-900/50 p-6 rounded-2xl border border-slate-700 mt-6 inline-block pr-12 w-full md:w-auto">
       <div className="mb-6">
         <h3 className="text-lg font-bold text-white mb-2 border-b border-white/10 pb-1">Soham Chavan</h3>
-        <p className="mb-1 text-sm"><strong>Email:</strong> <span className="text-purple-400">soham@gmail.com</span></p>
-        <p className="text-sm"><strong>Phone:</strong> <span className="text-purple-400">+91 98765 43210</span></p>
+        <p className="mb-1 text-sm"><strong>Email:</strong> <span className="text-violet-400">soham@gmail.com</span></p>
+        <p className="text-sm"><strong>Phone:</strong> <span className="text-violet-400">+91 98765 43210</span></p>
       </div>
       <div>
         <h3 className="text-lg font-bold text-white mb-2 border-b border-white/10 pb-1">Rohan Patil</h3>
-        <p className="mb-1 text-sm"><strong>Email:</strong> <span className="text-purple-400">rohann@gmail.com</span></p>
-        <p className="text-sm"><strong>Phone:</strong> <span className="text-purple-400">+91 91234 56789</span></p>
+        <p className="mb-1 text-sm"><strong>Email:</strong> <span className="text-violet-400">rohann@gmail.com</span></p>
+        <p className="text-sm"><strong>Phone:</strong> <span className="text-violet-400">+91 91234 56789</span></p>
       </div>
     </div>
     <div className="mt-8 border-t border-slate-700 pt-6">
